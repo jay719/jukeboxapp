@@ -13,7 +13,7 @@ app.welcome
 app.ask_users_name
 app.ask_if_username
 app.ask_what_to_do
-sleep(3)
+sleep(5)
 app.ask_another_song
 
 

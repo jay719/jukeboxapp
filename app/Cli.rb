@@ -78,17 +78,23 @@ class Cli
             if result == "Play Music"
                 ask_to_sort
             elsif result == "Check My Reviews"
-                @my_reviews = Review.all.select do |review|
-                    review[:user_id] == @user[:id]
-                        song_title = (Song.all.find { |song| song[:id] == review[:song_id]})[:title]
-                        song_artist = (Song.all.find { |song| song[:id] == review[:song_id]})[:artist]
-                    puts ("artist: #{song_artist}     song: #{song_title}     rating: #{review[:rating]}     content: '#{review[:content]}'").strip
-                end
+                check_my_reviews
             else
-                exit
+                binding.pry
             end
     end
 
+    def check_my_reviews
+        @my_reviews = Review.all.select do |review|
+            review[:user_id] == @user[:id]
+        end
+        @allmyreviews = @my_reviews.map do |review|
+            id = review[:song_id]
+            puts @songs.find_by(id: id)[:title], @songs.find_by(id: id)[:artist], review[:rating], review[:content]
+            puts "================"
+        end
+        @my_reviews << @allmyreviews
+    end
 
     def ask_to_sort
         result = @prompt.select("How would you like to sort?", %w(Genre Year Artist Random))

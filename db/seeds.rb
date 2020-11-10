@@ -43,7 +43,7 @@ song30 = Song.create(title: "Ooh", artist: "Pandasaywhat?!", genre: "Funky Bass"
 
 
 
-review1 = Review.create(user: user1, song: song1, rating: 5, content: "Suuuper funky.. slightly gangster :) ")
+review1 = Review.create(user: user1, song: song4, rating: 5, content: "Suuuper funky.. slightly gangster :) ")
 review2 = Review.create(user: user1, song: song25, rating: 5, content: "One of my new favorites! ")
 
 
