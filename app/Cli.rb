@@ -60,10 +60,7 @@ class Cli
 
     def ask_password
         @passcheck = @prompt.ask("What is your password?")
-        @logged_in_user = User.all.find do |user|
-            user[:username] == @username
-        end
-            if @passcheck == @logged_in_user[:password]
+            if @passcheck == @user[:password]
                 log_in_user
             else
                 puts "Invalid Password"
