@@ -11,10 +11,12 @@ prompt = TTY::Prompt.new
 app = Cli.new
 app.welcome
 app.ask_users_name
-app.ask_to_sort
+app.ask_if_username
+app.ask_what_to_do
 sleep(3)
 app.ask_another_song
 
 
 
-# binding.pry
+binding.pry
+0

@@ -1,5 +1,5 @@
 require_all 'app/models'
-ActiveRecord::Base.logger.level = 1
+
 
 
 class Cli
@@ -22,6 +22,76 @@ class Cli
         sleep(1)
         puts "Hey what up #{@users_name}?!"
     end
+
+    def ask_if_username
+        has_username = @prompt.yes?("Do you have a username?")
+            if has_username == true
+                ask_username
+            else
+                make_user
+            end
+    end
+
+    def make_user
+        @newuser = @prompt.ask("What is your desired username?")
+        sleep(1)
+        puts "Welcome #{@newuser}"
+        @newpassword = @prompt.ask("Enter a password")
+        sleep(1)
+        @newuserobject = User.create(name: @users_name, username: @newuser, password: @newpassword)
+        @user = User.all.find { |user| user[:name] == @users_name }
+    end
+
+
+    def ask_username
+        @username = @prompt.ask("What is your username?")
+        check_log_in
+    end
+
+
+    def check_log_in
+        @user = User.all.find { |user| user[:username] == @username}
+        if @user == nil
+            puts "no log in found"
+            ask_username
+        end
+        ask_password
+    end
+
+    def ask_password
+        @passcheck = @prompt.ask("What is your password?")
+        @logged_in_user = User.all.find do |user|
+            user[:username] == @username
+        end
+            if @passcheck == @logged_in_user[:password]
+                log_in_user
+            else
+                puts "Invalid Password"
+                ask_password
+            end
+    end
+
+    def log_in_user
+        puts "Welcome back, #{@users_name}"
+        ask_what_to_do
+    end
+
+    def ask_what_to_do
+        result = @prompt.select("What would you like to do today?", ["Play Music", "Check My Reviews", "Exit"])
+            if result == "Play Music"
+                ask_to_sort
+            elsif result == "Check My Reviews"
+                @my_reviews = Review.all.select do |review|
+                    review[:user_id] == @user[:id]
+                        song_title = (Song.all.find { |song| song[:id] == review[:song_id]})[:title]
+                        song_artist = (Song.all.find { |song| song[:id] == review[:song_id]})[:artist]
+                    puts ("artist: #{song_artist}     song: #{song_title}     rating: #{review[:rating]}     content: '#{review[:content]}'").strip
+                end
+            else
+                exit
+            end
+    end
+
 
     def ask_to_sort
         result = @prompt.select("How would you like to sort?", %w(Genre Year Artist Random))
@@ -54,7 +124,7 @@ class Cli
         song = @songs[rand(@songs.length)]
         puts song[:artist], song[:title], song[:year], song[:genre], song[:link]
         sleep(3)
-        ask_another_song
+        leave_review
     end
 
     def list_artist_songs
@@ -66,9 +136,11 @@ class Cli
     end
 
     def select_song_by_artist
-        songchoice = @prompt.select("Select a song:", @artist_song_list )
-        song_choice = @songs.find {|song| songchoice == song[:title]}
-        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+        @songchoice = @prompt.select("Select a song:", @artist_song_list )
+        @song_choice = @songs.find {|song| @songchoice == song[:title]}
+        puts @song_choice[:artist], @song_choice[:title], @song_choice[:year], @song_choice[:genre], @song_choice[:link]
+        sleep(2)
+        leave_review
     end
 
     def list_genre_songs
@@ -80,9 +152,11 @@ class Cli
     end
 
     def select_song_by_genre
-        songchoice = @prompt.select("Select a song:", @genre_song_list )
-        song_choice = @songs.find {|song| songchoice == song[:title]}
-        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+        @songchoice = @prompt.select("Select a song:", @genre_song_list )
+        @song_choice = @songs.find {|song| @songchoice == song[:title]}
+        puts @song_choice[:artist], @song_choice[:title], @song_choice[:year], @song_choice[:genre], @song_choice[:link]
+        sleep(2)
+        leave_review
     end
 
     def list_year_songs
@@ -94,9 +168,23 @@ class Cli
     end
 
     def select_song_by_year
-        songchoice = @prompt.select("Select a song:", @year_song_list )
-        song_choice = @songs.find {|song| songchoice == song[:title]}
-        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+        @songchoice = @prompt.select("Select a song:", @year_song_list )
+        @song_choice = @songs.find {|song| @songchoice == song[:title]}
+        puts @song_choice[:artist], @song_choice[:title], @song_choice[:year], @song_choice[:genre], @song_choice[:link]
+        sleep(2)
+        leave_review
+    end
+
+    def leave_review
+        review_push = @prompt.select("Would you like to leave a review?", %w(Yes No))
+        if review_push == "Yes"
+            songrating = @prompt.select("Pick a rating", %w(1 2 3 4 5))
+            content = @prompt.ask("What did you think?!")
+            Review.create(user: @user, song: @song_choice, rating: songrating, content: content)
+            ask_another_song
+        elsif review_push == "No"
+            ask_another_song
+        end
     end
 
     def ask_another_song
@@ -104,8 +192,10 @@ class Cli
         if another_song == "Yes"
             ask_to_sort
         elsif another_song == "No"
-            exit
+            ask_what_to_do
         end
     end
+
+
 
 end

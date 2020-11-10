@@ -29,7 +29,7 @@ song20 = Song.create(title: "Quincy", artist: "DJ Cam Quartet", genre: "Jazz", l
 song21 = Song.create(title: "It's Yours", artist: "DJ Cam Quartet", genre: "Jazz", link: "https://www.youtube.com/watch?v=Ec8vZMV0ftU", year: 2012)
 song22 = Song.create(title: "Samurai Sunrise", artist: "Saib", genre: "Lo-Fi", link: "https://www.youtube.com/watch?v=LS55EqeYJCw", year: 2019)
 song23 = Song.create(title: "Somewhat", artist: "Mono:Massive", genre: "Lo-Fi", link: "https://www.youtube.com/watch?v=Q8einG5IZfs", year: 2016)
-song24 = Song.create(title: "Stuntin", artist: "Kumarion", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=CmcBTHopwYc", year: 2020)
+song24 = Song.create(title: "Stuntin'", artist: "Kumarion", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=CmcBTHopwYc", year: 2020)
 song25 = Song.create(title: "Intergalactic", artist: "DAGGZ", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=MDrEUdwndtk", year: 2020)
 song26 = Song.create(title: "Evasion", artist: "Clozee", genre: "Future Bass", link: "https://www.youtube.com/watch?v=fpshjQ712c0", year: 2018)
 song27 = Song.create(title: "Harmony", artist: "Clozee", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=l_KNbQFds48", year: 2017)
@@ -44,6 +44,7 @@ song30 = Song.create(title: "Ooh", artist: "Pandasaywhat?!", genre: "Funky Bass"
 
 
 review1 = Review.create(user: user1, song: song1, rating: 5, content: "Suuuper funky.. slightly gangster :) ")
+review2 = Review.create(user: user1, song: song25, rating: 5, content: "One of my new favorites! ")
 
 
 
@@ -53,4 +54,4 @@ review1 = Review.create(user: user1, song: song1, rating: 5, content: "Suuuper f
 
 
 
-binding.pry
+# binding.pry
