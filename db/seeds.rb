@@ -31,6 +31,12 @@ song22 = Song.create(title: "Samurai Sunrise", artist: "Saib", genre: "Lo-Fi", l
 song23 = Song.create(title: "Somewhat", artist: "Mono:Massive", genre: "Lo-Fi", link: "https://www.youtube.com/watch?v=Q8einG5IZfs", year: 2016)
 song24 = Song.create(title: "Stuntin", artist: "Kumarion", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=CmcBTHopwYc", year: 2020)
 song25 = Song.create(title: "Intergalactic", artist: "DAGGZ", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=MDrEUdwndtk", year: 2020)
+song26 = Song.create(title: "Evasion", artist: "Clozee", genre: "Future Bass", link: "https://www.youtube.com/watch?v=fpshjQ712c0", year: 2018)
+song27 = Song.create(title: "Harmony", artist: "Clozee", genre: "Dirty Bass", link: "https://www.youtube.com/watch?v=l_KNbQFds48", year: 2017)
+song28 = Song.create(title: "FNKMSTR", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=O5Li2dj2Bsg", year: 2017)
+song29 = Song.create(title: "Swagger Wagon", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=-TPA7v6aca4", year: 2018)
+song30 = Song.create(title: "Ooh", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=HL7oO5h7kM0", year: 2020)
+
 
 
 

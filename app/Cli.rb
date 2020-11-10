@@ -6,16 +6,12 @@ class Cli
 
     def initialize
         @users_name = ''
-        @artists = (Song.all.map {|song| song[:artist] }).uniq.sort
-        @genres = (Song.all.map {|song| song[:genre] }).uniq.sort
-        @years = (Song.all.map { |song| song[:year]}).uniq.sort
+        @songs = Song.all
+        @artists = (@songs.map {|song| song[:artist] }).uniq.sort
+        @genres = (@songs.map {|song| song[:genre] }).uniq.sort
+        @years = (@songs.all.map { |song| song[:year]}).uniq.sort
         @prompt = TTY::Prompt.new(symbols: {marker: "🎶"})
     end
-
-# artists = (Song.all.map {|song| song[:artist] }).uniq
-# genres = (Song.all.map {|song| song[:genre] }).uniq
-# years = (Song.all.map { |song| song[:year]}).uniq.sort
-# prompt = TTY::Prompt.new
 
     def welcome
         puts "Welcome to the Youtube Jukebox!"
@@ -40,22 +36,76 @@ class Cli
     end
 
     def sort_by_year
-        year_choice = @prompt.select("Choose a year:",  @years )
+        @year_choice = @prompt.select("Choose a year:",  @years )
+        list_year_songs
     end
 
     def sort_by_artist
-        artist_choice = @prompt.select("Choose an artist:",  @artists )
+        @artist_choice = @prompt.select("Choose an artist:",  @artists )
+        list_artist_songs
     end
 
     def sort_by_genre 
-        genre_choice = @prompt.select("Choose a genre:",  @genres )
+        @genre_choice = @prompt.select("Choose a genre:",  @genres )
+        list_genre_songs
     end
 
     def randomsong
-        song = Song.all[rand(Song.all.length)]
+        song = @songs[rand(@songs.length)]
         puts song[:artist], song[:title], song[:year], song[:genre], song[:link]
+        sleep(3)
+        ask_another_song
     end
 
+    def list_artist_songs
+        list_songs_by_artist = @songs.select do |song|
+            song[:artist] == @artist_choice
+        end
+        @artist_song_list = list_songs_by_artist.map { |song| song[:title]}
+        select_song_by_artist
+    end
 
-    # binding.pry
+    def select_song_by_artist
+        songchoice = @prompt.select("Select a song:", @artist_song_list )
+        song_choice = @songs.find {|song| songchoice == song[:title]}
+        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+    end
+
+    def list_genre_songs
+        list_songs_by_genre = @songs.select do |song|
+            song[:genre] == @genre_choice
+        end
+        @genre_song_list = list_songs_by_genre.map { |song| song[:title]}
+        select_song_by_genre
+    end
+
+    def select_song_by_genre
+        songchoice = @prompt.select("Select a song:", @genre_song_list )
+        song_choice = @songs.find {|song| songchoice == song[:title]}
+        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+    end
+
+    def list_year_songs
+        list_songs_by_year = @songs.select do |song|
+            song[:year] == @year_choice
+        end
+        @year_song_list = list_songs_by_year.map { |song| song[:title]}
+        select_song_by_year
+    end
+
+    def select_song_by_year
+        songchoice = @prompt.select("Select a song:", @year_song_list )
+        song_choice = @songs.find {|song| songchoice == song[:title]}
+        puts song_choice[:artist], song_choice[:title], song_choice[:year], song_choice[:genre], song_choice[:link]
+    end
+
+    def ask_another_song
+        another_song = @prompt.select("Would you like to play another song?", %w(Yes No))
+        if another_song == "Yes"
+            ask_to_sort
+        elsif another_song == "No"
+            exit
+        end
+    end
+
 end

@@ -12,6 +12,8 @@ app = Cli.new
 app.welcome
 app.ask_users_name
 app.ask_to_sort
+sleep(3)
+app.ask_another_song
 
 
 
