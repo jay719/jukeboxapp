@@ -38,6 +38,19 @@ song27 = Song.create(title: "Harmony", artist: "Clozee", genre: "Dirty Bass", li
 song28 = Song.create(title: "FNKMSTR", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=O5Li2dj2Bsg", year: 2017)
 song29 = Song.create(title: "Swagger Wagon", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=-TPA7v6aca4", year: 2018)
 song30 = Song.create(title: "Ooh", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=HL7oO5h7kM0", year: 2020)
+song31 = Song.create(title: "Napoleon Hill", artist: "Harry Mack", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=A12Q43RqP7s", year: 2019)
+song32 = Song.create(title: "Juicy", artist: "The Notorious B.I.G.", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=_JZom_gVfuw", year: 1994)
+song33 = Song.create(title: "C.R.E.A.M.", artist: "Wu-Tang Clan", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=or5C2jV1qRc", year: 1993)
+song34 = Song.create(title: "Deadly Combination", artist: "Big L", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=R_6dgJQc0x4", year: 2000)
+song35 = Song.create(title: "Put It On", artist: "Big L", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=WWMjRMJ0dTI", year: 1995)
+song36 = Song.create(title: "Changes", artist: "Tupac", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=eXvBjCO19QY", year: 1998)
+song37 = Song.create(title: "Notorious B.I.G.", artist: "The Notorious B.I.G.", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=fwcONrTG7nk", year: 2000)
+song38 = Song.create(title: "Warning", artist: "The Notorious B.I.G.", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=TbSm6HsX_ek", year: 1994)
+song39 = Song.create(title: "Gimme the Loot", artist: "The Notorious B.I.G.", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=gXg7JccIppM", year: 1994)
+song40 = Song.create(title: "Flamboyant", artist: "Big L", genre: "Hip Hop", link: "https://www.youtube.com/watch?v=qA9grAxAZjE", year: 2000)
+
+
+
 
 
 
