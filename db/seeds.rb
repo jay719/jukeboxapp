@@ -5,6 +5,8 @@ Song.destroy_all
 
 
 user1 = User.create(name: "Jordan", username: "JorPan", password: "123")
+user2 = User.create(name: "Javaria", username: "JazzyJay", password: "123")
+user3 = User.create(name: "Colter", username: "ColtUlrich", password: "123")
 
 song1 = Song.create(title: "Stuntin", artist: "The Floozies", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=5hL_ck7injw", year: 2013)
 song2 = Song.create(title: "Sunroof Cadillac", artist: "The Floozies", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=PgDz5-tfnTY", year: 2012)
@@ -36,8 +38,6 @@ song27 = Song.create(title: "Harmony", artist: "Clozee", genre: "Dirty Bass", li
 song28 = Song.create(title: "FNKMSTR", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=O5Li2dj2Bsg", year: 2017)
 song29 = Song.create(title: "Swagger Wagon", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=-TPA7v6aca4", year: 2018)
 song30 = Song.create(title: "Ooh", artist: "Pandasaywhat?!", genre: "Funky Bass", link: "https://www.youtube.com/watch?v=HL7oO5h7kM0", year: 2020)
-
-
 
 
 

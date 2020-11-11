@@ -80,7 +80,7 @@ class Cli
             elsif result == "Check My Reviews"
                 check_my_reviews
             else
-                binding.pry
+                exit
             end
     end
 
@@ -93,17 +93,20 @@ class Cli
             puts @songs.find_by(id: id)[:title], @songs.find_by(id: id)[:artist], review[:rating], review[:content]
             puts "================"
         end
-        @my_reviews << @allmyreviews
+        @my_reviews
+        ask_what_to_do
     end
 
     def ask_to_sort
-        result = @prompt.select("How would you like to sort?", %w(Genre Year Artist Random))
+        result = @prompt.select("How would you like to sort?", %w(Genre Year Artist Random Back))
         if result == "Year"
             sort_by_year
         elsif result == "Artist"
             sort_by_artist
         elsif result == "Genre"
             sort_by_genre
+        elsif result == "Back"
+            ask_what_to_do
         else randomsong
         end
     end
@@ -124,8 +127,8 @@ class Cli
     end
 
     def randomsong
-        song = @songs[rand(@songs.length)]
-        puts song[:artist], song[:title], song[:year], song[:genre], song[:link]
+        @song_choice = @songs[rand(@songs.length)]
+        puts @song_choice[:artist], @song_choice[:title], @song_choice[:year], @song_choice[:genre], @song_choice[:link]
         sleep(3)
         leave_review
     end
